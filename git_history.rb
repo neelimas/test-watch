@@ -4,12 +4,20 @@ class GitHistory
 
   def initialize(commit_id = nil)
     @commit_id= commit_id unless commit_id.nil?
+    if commit_id.nil?:
+      getLatestCommit
+    end
     @has_java_or_test_code = false
     set_defaults
     get_change_list
     find_lines_of_code_added
   end
-
+  
+  def getLatestCommit
+      commit_id = execute "git rev-parse --verify HEAD"
+      @commit_id = commit_id.chop!
+  end
+  
   def ratio_score
     @test_lines_of_code / @production_lines_of_code
   end
