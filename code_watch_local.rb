@@ -8,5 +8,4 @@ class CodeWatchLocal
       puts  "Your code does not have adequate tests."
     end
   end
-  CodeWatchLocal.new()
 end
